@@ -41,6 +41,20 @@ Local dev requires the backend at `localhost:8080` and Keycloak at `localhost:81
 - Components prefer `inject()` over constructor DI and use signals (`signal()`) for local state — match this style in new code.
 - Production build budget: 500kb warning / 1mb error for the initial bundle. If you add a heavy dep, lazy-load it.
 
+## Git workflow
+
+**NEVER push directly to `main` or `develop`.** Both branches are protected and only accept merges via approved PRs.
+
+To implement any change:
+
+1. Create a feature branch from `develop`: `git checkout develop && git checkout -b feature/short-description`
+2. Commit your changes on the feature branch
+3. Push the feature branch: `git push -u origin feature/short-description`
+4. A GitHub Action automatically creates a PR `feature/* → develop`
+5. After approval and merge into `develop`, another Action creates a PR `develop → main`
+
+Branch naming: `feature/<short-kebab-description>` (e.g., `feature/add-new-page`, `feature/fix-auth-redirect`).
+
 ## Deploy
 
 `vercel.json` rewrites everything to `/index.html` for SPA routing. CI (`.github/workflows/ci.yml`) only runs `lint` and `build:prod` on push/PR to `main` — tests are not run in CI, so don't rely on CI to catch test breakage.
