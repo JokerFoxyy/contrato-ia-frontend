@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { DocumentResultComponent } from './document-result.component';
 import { ApiService, DocumentResponse } from '../../../core/services/api.service';
 
@@ -21,7 +22,7 @@ describe('DocumentResultComponent', () => {
     updatedAt: '2026-04-09T10:00:00Z',
   };
 
-  function createComponent(docId: string = 'doc-abc', apiReturn: any = of(mockDocument)) {
+  function createComponent(docId = 'doc-abc', apiReturn: Observable<DocumentResponse> = of(mockDocument)) {
     apiServiceMock = jasmine.createSpyObj('ApiService', ['getDocument']);
     apiServiceMock.getDocument.and.returnValue(apiReturn);
 

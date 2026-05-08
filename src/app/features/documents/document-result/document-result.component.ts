@@ -9,18 +9,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ApiService, DocumentResponse } from '../../../core/services/api.service';
 
 @Component({
-  selector: 'app-document-result',
-  standalone: true,
-  imports: [
-    RouterLink,
-    DatePipe,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatChipsModule,
-    MatTooltipModule,
-  ],
-  template: `
+    selector: 'app-document-result',
+    imports: [
+        RouterLink,
+        DatePipe,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatChipsModule,
+        MatTooltipModule,
+    ],
+    template: `
     <div class="page-container py-10">
 
       @if (loading()) {
@@ -103,7 +102,7 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
       }
 
     </div>
-  `,
+  `
 })
 export class DocumentResultComponent implements OnInit {
   private route = inject(ActivatedRoute);

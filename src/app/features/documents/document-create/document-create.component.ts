@@ -16,18 +16,17 @@ interface ContractExample {
 }
 
 @Component({
-  selector: 'app-document-create',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatChipsModule,
-  ],
-  template: `
+    selector: 'app-document-create',
+    imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatChipsModule,
+    ],
+    template: `
     <div class="page-container py-10">
       <div class="max-w-2xl mx-auto">
 
@@ -106,8 +105,10 @@ interface ContractExample {
                 <mat-progress-spinner diameter="20" mode="indeterminate" class="inline-block mr-2" />
                 Gerando contrato...
               } @else {
-                <mat-icon class="mr-1">auto_awesome</mat-icon>
-                Gerar Contrato com IA
+                <ng-container>
+                  <mat-icon class="mr-1">auto_awesome</mat-icon>
+                  Gerar Contrato com IA
+                </ng-container>
               }
             </button>
 
@@ -123,7 +124,7 @@ interface ContractExample {
 
       </div>
     </div>
-  `,
+  `
 })
 export class DocumentCreateComponent {
   private fb = inject(FormBuilder);

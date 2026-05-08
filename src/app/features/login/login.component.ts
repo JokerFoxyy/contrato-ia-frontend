@@ -4,10 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { KeycloakService } from '../../core/auth/keycloak.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [MatButtonModule, MatIconModule],
-  template: `
+    selector: 'app-login',
+    imports: [MatButtonModule, MatIconModule],
+    template: `
     <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div class="max-w-md w-full">
 
@@ -50,7 +49,7 @@ import { KeycloakService } from '../../core/auth/keycloak.service';
         </p>
       </div>
     </div>
-  `,
+  `
 })
 export class LoginComponent {
   private keycloak = inject(KeycloakService);

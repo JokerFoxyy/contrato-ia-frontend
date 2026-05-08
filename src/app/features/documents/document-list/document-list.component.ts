@@ -8,17 +8,16 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ApiService, DocumentResponse } from '../../../core/services/api.service';
 
 @Component({
-  selector: 'app-document-list',
-  standalone: true,
-  imports: [
-    RouterLink,
-    DatePipe,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatChipsModule,
-  ],
-  template: `
+    selector: 'app-document-list',
+    imports: [
+        RouterLink,
+        DatePipe,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatChipsModule,
+    ],
+    template: `
     <div class="page-container py-10">
       <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold text-slate-800">Meus Documentos</h1>
@@ -65,7 +64,7 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
         }
       </div>
     </div>
-  `,
+  `
 })
 export class DocumentListComponent implements OnInit {
   private api = inject(ApiService);
