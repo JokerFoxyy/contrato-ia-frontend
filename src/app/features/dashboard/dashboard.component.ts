@@ -6,10 +6,9 @@ import { KeycloakService } from '../../core/auth/keycloak.service';
 import { ApiService } from '../../core/services/api.service';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [RouterLink, MatButtonModule, MatIconModule],
-  template: `
+    selector: 'app-dashboard',
+    imports: [RouterLink, MatButtonModule, MatIconModule],
+    template: `
     <div class="page-container py-10">
 
       <!-- Boas vindas -->
@@ -63,7 +62,7 @@ import { ApiService } from '../../core/services/api.service';
       </div>
 
     </div>
-  `,
+  `
 })
 export class DashboardComponent implements OnInit {
   private keycloak = inject(KeycloakService);

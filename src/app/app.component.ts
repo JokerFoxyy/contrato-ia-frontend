@@ -7,18 +7,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { KeycloakService } from './core/auth/keycloak.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-  ],
-  template: `
+    selector: 'app-root',
+    imports: [
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+    ],
+    template: `
     <div class="min-h-screen bg-slate-50">
       <!-- Navbar -->
       <mat-toolbar class="!bg-white !shadow-sm !sticky !top-0 !z-50">
@@ -69,7 +68,7 @@ import { KeycloakService } from './core/auth/keycloak.service';
         <router-outlet />
       </main>
     </div>
-  `,
+  `
 })
 export class AppComponent {
   private keycloak = inject(KeycloakService);

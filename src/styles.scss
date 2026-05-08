@@ -6,26 +6,25 @@
 @tailwind components;
 @tailwind utilities;
 
-// Material Theme
-@include mat.core();
-
-$primary-palette: mat.define-palette(mat.$blue-palette, 600, 300, 800);
-$accent-palette: mat.define-palette(mat.$indigo-palette, 500);
-$warn-palette: mat.define-palette(mat.$red-palette);
-
-$theme: mat.define-light-theme((
+// Material Theme (Angular Material 19 API)
+$theme: mat.define-theme((
   color: (
-    primary: $primary-palette,
-    accent: $accent-palette,
-    warn: $warn-palette,
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$violet-palette,
   ),
-  typography: mat.define-typography-config(
-    $font-family: 'Inter, sans-serif',
+  typography: (
+    brand-family: 'Inter, sans-serif',
+    plain-family: 'Inter, sans-serif',
   ),
-  density: 0,
+  density: (
+    scale: 0,
+  ),
 ));
 
-@include mat.all-component-themes($theme);
+html {
+  @include mat.all-component-themes($theme);
+}
 
 // Reset e base
 *, *::before, *::after {
