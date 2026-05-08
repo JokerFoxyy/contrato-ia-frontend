@@ -22,7 +22,9 @@ describe('authGuard', () => {
   it('should return true when user is authenticated', () => {
     keycloakServiceMock.isAuthenticated.and.returnValue(true);
 
-    const result = TestBed.runInInjectionContext(() => authGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot));
+    const result = TestBed.runInInjectionContext(() =>
+      authGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot)
+    );
 
     expect(result).toBeTrue();
     expect(keycloakServiceMock.isAuthenticated).toHaveBeenCalled();
@@ -34,7 +36,9 @@ describe('authGuard', () => {
     const fakeUrlTree = {} as UrlTree;
     routerMock.createUrlTree.and.returnValue(fakeUrlTree);
 
-    const result = TestBed.runInInjectionContext(() => authGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot));
+    const result = TestBed.runInInjectionContext(() =>
+      authGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot)
+    );
 
     expect(result).toBe(fakeUrlTree);
     expect(routerMock.createUrlTree).toHaveBeenCalledWith(['/login']);
