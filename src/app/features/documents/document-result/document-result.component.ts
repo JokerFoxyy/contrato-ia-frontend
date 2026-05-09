@@ -123,7 +123,7 @@ export class DocumentResultComponent implements OnInit {
         this.loading.set(false);
       },
       error: () => {
-        this.error.set('Documento nao encontrado.');
+        this.error.set('Documento não encontrado.');
         this.loading.set(false);
       },
     });

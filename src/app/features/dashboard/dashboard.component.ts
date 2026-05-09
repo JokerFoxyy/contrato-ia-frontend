@@ -16,15 +16,15 @@ import { ApiService } from '../../core/services/api.service';
         <h1 class="text-2xl font-bold text-slate-800 dark:text-slate-100">
           Ola, {{ userName }} 👋
         </h1>
-        <p class="text-slate-500 dark:text-slate-400 mt-1">O que voce precisa contratualizar hoje?</p>
+        <p class="text-slate-500 dark:text-slate-400 mt-1">O que você precisa contratualizar hoje?</p>
       </div>
 
       <!-- CTA principal -->
       <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white mb-8 shadow-lg dark:shadow-blue-900/30">
         <h2 class="text-2xl font-bold mb-2">Gere um contrato em minutos</h2>
         <p class="opacity-90 mb-6 max-w-lg">
-          Descreva o que voce precisa em linguagem simples e a IA gera um contrato
-          completo adaptado a legislacao brasileira.
+          Descreva o que você precisa em linguagem simples e a IA gera um contrato
+          completo adaptado à legislação brasileira.
         </p>
         <a mat-flat-button routerLink="/documents/new"
            class="!bg-white !text-blue-600 !font-semibold">
@@ -41,7 +41,7 @@ import { ApiService } from '../../core/services/api.service';
         </div>
         <div class="card text-center">
           <div class="text-3xl font-bold text-green-600 dark:text-green-400">{{ docsThisMonth() }}</div>
-          <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Este mes (plano gratuito: 3)</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">Este mês (plano gratuito: 3)</div>
         </div>
         <div class="card text-center">
           <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">0</div>
@@ -72,14 +72,14 @@ export class DashboardComponent implements OnInit {
   docsThisMonth = signal(0);
 
   get userName(): string {
-    return this.keycloak.getUserProfile().name ?? 'usuario';
+    return this.keycloak.getUserProfile().name ?? 'usuário';
   }
 
   quickTemplates = [
-    { emoji: '💻', label: 'Prestacao de Servicos', description: 'Para freelancers e MEIs' },
+    { emoji: '💻', label: 'Prestação de Serviços', description: 'Para freelancers e MEIs' },
     { emoji: '🤝', label: 'Parceria Comercial', description: 'Entre empresas e profissionais' },
-    { emoji: '🔒', label: 'NDA / Confidencialidade', description: 'Proteja suas informacoes' },
-    { emoji: '🏠', label: 'Locacao', description: 'Residencial ou comercial' },
+    { emoji: '🔒', label: 'NDA / Confidencialidade', description: 'Proteja suas informações' },
+    { emoji: '🏠', label: 'Locação', description: 'Residencial ou comercial' },
   ];
 
   ngOnInit(): void {
