@@ -32,10 +32,10 @@ interface ContractExample {
 
         <!-- Header -->
         <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-slate-800 mb-2">Novo Contrato</h1>
-          <p class="text-slate-500">
-            Descreva o que você precisa em linguagem simples. A IA vai gerar um contrato
-            completo adaptado à legislação brasileira.
+          <h1 class="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2">Novo Contrato</h1>
+          <p class="text-slate-500 dark:text-slate-400">
+            Descreva o que voce precisa em linguagem simples. A IA vai gerar um contrato
+            completo adaptado a legislacao brasileira.
           </p>
         </div>
 
@@ -43,15 +43,15 @@ interface ContractExample {
         <div class="card">
           <form [formGroup]="form" (ngSubmit)="generate()">
 
-            <!-- Exemplos rápidos -->
+            <!-- Exemplos rapidos -->
             <div class="mb-5">
-              <p class="text-sm font-medium text-slate-600 mb-2">Exemplos rápidos:</p>
+              <p class="text-sm font-medium text-slate-600 dark:text-slate-300 mb-2">Exemplos rapidos:</p>
               <div class="flex flex-wrap gap-2">
                 @for (example of examples; track example.label) {
                   <button
                     type="button"
                     mat-stroked-button
-                    class="!text-xs"
+                    class="!text-xs dark:!text-slate-300 dark:!border-slate-600"
                     (click)="useExample(example.description)"
                   >
                     {{ example.label }}
@@ -60,40 +60,40 @@ interface ContractExample {
               </div>
             </div>
 
-            <!-- Campo de descrição -->
+            <!-- Campo de descricao -->
             <mat-form-field class="w-full" appearance="outline">
               <mat-label>Descreva o seu contrato</mat-label>
               <textarea
                 matInput
                 formControlName="description"
                 rows="6"
-                placeholder="Ex: Preciso de um contrato de prestação de serviços de desenvolvimento web. Sou freelancer, meu cliente é uma empresa chamada Tech LTDA. O projeto é um site institucional por R$ 5.000 com prazo de 30 dias..."
+                placeholder="Ex: Preciso de um contrato de prestacao de servicos de desenvolvimento web. Sou freelancer, meu cliente e uma empresa chamada Tech LTDA. O projeto e um site institucional por R$ 5.000 com prazo de 30 dias..."
               ></textarea>
               <mat-hint align="end">
                 {{ form.get('description')?.value?.length || 0 }} / 2000
               </mat-hint>
               @if (form.get('description')?.hasError('required') && form.get('description')?.touched) {
-                <mat-error>Descreva o que você precisa no contrato</mat-error>
+                <mat-error>Descreva o que voce precisa no contrato</mat-error>
               }
               @if (form.get('description')?.hasError('minlength')) {
-                <mat-error>Mínimo de 20 caracteres</mat-error>
+                <mat-error>Minimo de 20 caracteres</mat-error>
               }
             </mat-form-field>
 
-            <!-- Título opcional -->
+            <!-- Titulo opcional -->
             <mat-form-field class="w-full mt-3" appearance="outline">
-              <mat-label>Título do documento (opcional)</mat-label>
+              <mat-label>Titulo do documento (opcional)</mat-label>
               <input matInput formControlName="title" placeholder="Ex: Contrato - Site Tech LTDA" />
             </mat-form-field>
 
             <!-- Erro geral -->
             @if (error()) {
-              <div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-sm text-red-700">
+              <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4 text-sm text-red-700 dark:text-red-300">
                 {{ error() }}
               </div>
             }
 
-            <!-- Botão de submit -->
+            <!-- Botao de submit -->
             <button
               mat-flat-button
               color="primary"
@@ -116,10 +116,10 @@ interface ContractExample {
         </div>
 
         <!-- Nota informativa -->
-        <p class="text-center text-xs text-slate-400 mt-4">
+        <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-4">
           <mat-icon class="!text-xs align-middle">info</mat-icon>
-          Os contratos gerados são baseados na legislação brasileira vigente.
-          Recomendamos revisão por um advogado para contratos de alto valor.
+          Os contratos gerados sao baseados na legislacao brasileira vigente.
+          Recomendamos revisao por um advogado para contratos de alto valor.
         </p>
 
       </div>
@@ -141,19 +141,19 @@ export class DocumentCreateComponent {
 
   examples: ContractExample[] = [
     {
-      label: 'Prestação de Serviços',
+      label: 'Prestacao de Servicos',
       icon: 'work',
-      description: 'Contrato de prestação de serviços de desenvolvimento web entre freelancer e empresa. Projeto de site institucional por R$ 5.000 com prazo de 30 dias.',
+      description: 'Contrato de prestacao de servicos de desenvolvimento web entre freelancer e empresa. Projeto de site institucional por R$ 5.000 com prazo de 30 dias.',
     },
     {
       label: 'NDA',
       icon: 'lock',
-      description: 'Acordo de confidencialidade entre duas empresas que vão compartilhar informações estratégicas durante uma negociação de parceria.',
+      description: 'Acordo de confidencialidade entre duas empresas que vao compartilhar informacoes estrategicas durante uma negociacao de parceria.',
     },
     {
-      label: 'Locação',
+      label: 'Locacao',
       icon: 'home',
-      description: 'Contrato de locação residencial de apartamento por 12 meses, valor R$ 2.500/mês, com fiador.',
+      description: 'Contrato de locacao residencial de apartamento por 12 meses, valor R$ 2.500/mes, com fiador.',
     },
     {
       label: 'Parceria Comercial',
