@@ -32,8 +32,8 @@ interface ContractExample {
 
         <!-- Header -->
         <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-slate-800 mb-2">Novo Contrato</h1>
-          <p class="text-slate-500">
+          <h1 class="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2">Novo Contrato</h1>
+          <p class="text-slate-500 dark:text-slate-400">
             Descreva o que você precisa em linguagem simples. A IA vai gerar um contrato
             completo adaptado à legislação brasileira.
           </p>
@@ -43,15 +43,15 @@ interface ContractExample {
         <div class="card">
           <form [formGroup]="form" (ngSubmit)="generate()">
 
-            <!-- Exemplos rápidos -->
+            <!-- Exemplos rapidos -->
             <div class="mb-5">
-              <p class="text-sm font-medium text-slate-600 mb-2">Exemplos rápidos:</p>
+              <p class="text-sm font-medium text-slate-600 dark:text-slate-300 mb-2">Exemplos rápidos:</p>
               <div class="flex flex-wrap gap-2">
                 @for (example of examples; track example.label) {
                   <button
                     type="button"
                     mat-stroked-button
-                    class="!text-xs"
+                    class="!text-xs dark:!text-slate-300 dark:!border-slate-600"
                     (click)="useExample(example.description)"
                   >
                     {{ example.label }}
@@ -60,7 +60,7 @@ interface ContractExample {
               </div>
             </div>
 
-            <!-- Campo de descrição -->
+            <!-- Campo de descricao -->
             <mat-form-field class="w-full" appearance="outline">
               <mat-label>Descreva o seu contrato</mat-label>
               <textarea
@@ -80,7 +80,7 @@ interface ContractExample {
               }
             </mat-form-field>
 
-            <!-- Título opcional -->
+            <!-- Titulo opcional -->
             <mat-form-field class="w-full mt-3" appearance="outline">
               <mat-label>Título do documento (opcional)</mat-label>
               <input matInput formControlName="title" placeholder="Ex: Contrato - Site Tech LTDA" />
@@ -88,12 +88,12 @@ interface ContractExample {
 
             <!-- Erro geral -->
             @if (error()) {
-              <div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-sm text-red-700">
+              <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4 text-sm text-red-700 dark:text-red-300">
                 {{ error() }}
               </div>
             }
 
-            <!-- Botão de submit -->
+            <!-- Botao de submit -->
             <button
               mat-flat-button
               color="primary"
@@ -116,7 +116,7 @@ interface ContractExample {
         </div>
 
         <!-- Nota informativa -->
-        <p class="text-center text-xs text-slate-400 mt-4">
+        <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-4">
           <mat-icon class="!text-xs align-middle">info</mat-icon>
           Os contratos gerados são baseados na legislação brasileira vigente.
           Recomendamos revisão por um advogado para contratos de alto valor.

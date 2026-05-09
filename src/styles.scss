@@ -6,8 +6,9 @@
 @tailwind components;
 @tailwind utilities;
 
-// Material Theme (Angular Material 19 API)
-$theme: mat.define-theme((
+// ── Material Themes ─────────────────────────────────────────────────────────
+
+$light-theme: mat.define-theme((
   color: (
     theme-type: light,
     primary: mat.$azure-palette,
@@ -22,11 +23,33 @@ $theme: mat.define-theme((
   ),
 ));
 
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$azure-palette,
+    tertiary: mat.$violet-palette,
+  ),
+  typography: (
+    brand-family: 'Inter, sans-serif',
+    plain-family: 'Inter, sans-serif',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+// Light mode (default)
 html {
-  @include mat.all-component-themes($theme);
+  @include mat.all-component-themes($light-theme);
 }
 
-// Reset e base
+// Dark mode — when <html class="dark">
+html.dark {
+  @include mat.all-component-colors($dark-theme);
+}
+
+// ── Reset e base ────────────────────────────────────────────────────────────
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -37,9 +60,16 @@ html, body {
   font-family: 'Inter', sans-serif;
   background-color: #f8fafc;
   color: #1e293b;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-// Utilitários globais
+html.dark, html.dark body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+// ── Utilitarios globais ─────────────────────────────────────────────────────
+
 .page-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -48,4 +78,25 @@ html, body {
 
 .card {
   @apply bg-white rounded-xl shadow-sm border border-slate-200 p-6;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+html.dark .card {
+  @apply bg-slate-800 border-slate-700;
+}
+
+// ── Material Overrides for Dark Mode ────────────────────────────────────────
+
+html.dark {
+  .mat-mdc-menu-panel {
+    background-color: #1e293b !important;
+  }
+
+  .mat-mdc-form-field {
+    .mdc-text-field--outlined .mdc-notched-outline__leading,
+    .mdc-text-field--outlined .mdc-notched-outline__notch,
+    .mdc-text-field--outlined .mdc-notched-outline__trailing {
+      border-color: #475569 !important;
+    }
+  }
 }

@@ -31,32 +31,34 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
       @if (document()) {
         <div class="max-w-4xl mx-auto">
 
-          <!-- Header com ações -->
+          <!-- Header com acoes -->
           <div class="flex items-start justify-between mb-6 gap-4">
             <div>
-              <a routerLink="/documents" class="text-sm text-blue-600 hover:underline flex items-center gap-1 mb-2">
+              <a routerLink="/documents" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 mb-2">
                 <mat-icon class="!text-sm">arrow_back</mat-icon>
                 Meus documentos
               </a>
-              <h1 class="text-2xl font-bold text-slate-800">{{ document()!.title }}</h1>
+              <h1 class="text-2xl font-bold text-slate-800 dark:text-slate-100">{{ document()!.title }}</h1>
               <div class="flex items-center gap-2 mt-1">
                 <mat-chip [class]="statusClass()">{{ statusLabel() }}</mat-chip>
-                <span class="text-xs text-slate-400">
+                <span class="text-xs text-slate-400 dark:text-slate-500">
                   Gerado em {{ document()!.createdAt | date: 'dd/MM/yyyy HH:mm' }}
                 </span>
               </div>
             </div>
 
-            <!-- Botões de exportar -->
+            <!-- Botoes de exportar -->
             <div class="flex gap-2 shrink-0">
               @if (document()!.pdfUrl) {
-                <a [href]="document()!.pdfUrl" target="_blank" mat-stroked-button>
+                <a [href]="document()!.pdfUrl" target="_blank" mat-stroked-button
+                   class="dark:!text-slate-300 dark:!border-slate-600">
                   <mat-icon>picture_as_pdf</mat-icon>
                   PDF
                 </a>
               }
               @if (document()!.docxUrl) {
-                <a [href]="document()!.docxUrl" target="_blank" mat-stroked-button>
+                <a [href]="document()!.docxUrl" target="_blank" mat-stroked-button
+                   class="dark:!text-slate-300 dark:!border-slate-600">
                   <mat-icon>description</mat-icon>
                   DOCX
                 </a>
@@ -69,18 +71,18 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
             </div>
           </div>
 
-          <!-- Conteúdo do documento -->
+          <!-- Conteudo do documento -->
           <div class="card">
-            <div class="prose prose-slate max-w-none">
-              <pre class="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-700">{{ document()!.generatedContent }}</pre>
+            <div class="prose prose-slate dark:prose-invert max-w-none">
+              <pre class="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-700 dark:text-slate-300">{{ document()!.generatedContent }}</pre>
             </div>
           </div>
 
           <!-- CTA para assinar -->
-          <div class="mt-6 p-5 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between gap-4">
+          <div class="mt-6 p-5 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl flex items-center justify-between gap-4">
             <div>
-              <p class="font-semibold text-blue-800">Pronto para assinar?</p>
-              <p class="text-sm text-blue-600">Envie para assinatura digital diretamente pela plataforma.</p>
+              <p class="font-semibold text-blue-800 dark:text-blue-300">Pronto para assinar?</p>
+              <p class="text-sm text-blue-600 dark:text-blue-400">Envie para assinatura digital diretamente pela plataforma.</p>
             </div>
             <button mat-flat-button color="primary">
               <mat-icon>draw</mat-icon>
@@ -94,7 +96,7 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
       @if (error()) {
         <div class="text-center py-20">
           <mat-icon class="!text-5xl text-red-400">error_outline</mat-icon>
-          <p class="mt-4 text-slate-600">{{ error() }}</p>
+          <p class="mt-4 text-slate-600 dark:text-slate-300">{{ error() }}</p>
           <a mat-flat-button color="primary" routerLink="/documents/new" class="mt-4">
             Tentar novamente
           </a>
@@ -150,10 +152,10 @@ export class DocumentResultComponent implements OnInit {
 
   statusClass(): string {
     const classes: Record<string, string> = {
-      DRAFT: '!bg-yellow-100 !text-yellow-800',
-      FINALIZED: '!bg-green-100 !text-green-800',
-      SIGNING: '!bg-blue-100 !text-blue-800',
-      SIGNED: '!bg-emerald-100 !text-emerald-800',
+      DRAFT: '!bg-yellow-100 !text-yellow-800 dark:!bg-yellow-900/30 dark:!text-yellow-300',
+      FINALIZED: '!bg-green-100 !text-green-800 dark:!bg-green-900/30 dark:!text-green-300',
+      SIGNING: '!bg-blue-100 !text-blue-800 dark:!bg-blue-900/30 dark:!text-blue-300',
+      SIGNED: '!bg-emerald-100 !text-emerald-800 dark:!bg-emerald-900/30 dark:!text-emerald-300',
     };
     return classes[this.document()?.status ?? ''] ?? '';
   }

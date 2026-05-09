@@ -20,7 +20,7 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
     template: `
     <div class="page-container py-10">
       <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-bold text-slate-800">Meus Documentos</h1>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Meus Documentos</h1>
         <a mat-flat-button color="primary" routerLink="/documents/new">
           <mat-icon>add</mat-icon>
           Novo Contrato
@@ -35,9 +35,9 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
 
       @if (!loading() && documents().length === 0) {
         <div class="text-center py-20 card">
-          <mat-icon class="!text-6xl text-slate-300">description</mat-icon>
-          <h2 class="mt-4 text-lg font-medium text-slate-600">Nenhum documento ainda</h2>
-          <p class="text-slate-400 mt-1">Crie seu primeiro contrato com IA</p>
+          <mat-icon class="!text-6xl text-slate-300 dark:text-slate-600">description</mat-icon>
+          <h2 class="mt-4 text-lg font-medium text-slate-600 dark:text-slate-300">Nenhum documento ainda</h2>
+          <p class="text-slate-400 dark:text-slate-500 mt-1">Crie seu primeiro contrato com IA</p>
           <a mat-flat-button color="primary" routerLink="/documents/new" class="mt-4">
             Criar primeiro contrato
           </a>
@@ -47,18 +47,18 @@ import { ApiService, DocumentResponse } from '../../../core/services/api.service
       <div class="grid gap-4">
         @for (doc of documents(); track doc.id) {
           <a [routerLink]="['/documents', doc.id]"
-             class="card hover:shadow-md transition-shadow cursor-pointer no-underline block">
+             class="card hover:shadow-md dark:hover:shadow-slate-900/50 transition-shadow cursor-pointer no-underline block">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <mat-icon class="text-blue-500">description</mat-icon>
+                <mat-icon class="text-blue-500 dark:text-blue-400">description</mat-icon>
                 <div>
-                  <h3 class="font-semibold text-slate-800">{{ doc.title }}</h3>
-                  <p class="text-sm text-slate-500">
+                  <h3 class="font-semibold text-slate-800 dark:text-slate-100">{{ doc.title }}</h3>
+                  <p class="text-sm text-slate-500 dark:text-slate-400">
                     {{ doc.createdAt | date: 'dd/MM/yyyy HH:mm' }}
                   </p>
                 </div>
               </div>
-              <mat-icon class="text-slate-400">chevron_right</mat-icon>
+              <mat-icon class="text-slate-400 dark:text-slate-500">chevron_right</mat-icon>
             </div>
           </a>
         }
