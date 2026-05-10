@@ -80,6 +80,19 @@ Follow these principles in every session:
 - **YAGNI** — implement what's needed now, not speculative features.
 - **Refactor continuously** — every session should leave the codebase cleaner than it was found.
 
+### Security First & Shift Left
+
+Security is built into every step of development, not added at the end:
+
+- **Sanitize user input** — never trust or render raw user input. Use Angular's built-in XSS protection (avoid `bypassSecurityTrust*` unless absolutely necessary and documented).
+- **No secrets in code** — API keys, tokens, and credentials go in environment files (never committed) or backend-only.
+- **CSP compliance** — avoid inline scripts/styles. All new code must work with Content Security Policy headers.
+- **Auth checks everywhere** — every route must be explicitly guarded or explicitly public. Default is deny via `authGuard`.
+- **Dependency scanning** — CI runs `npm audit` or equivalent on every PR. Known CVEs block merge.
+- **HTTPS only** — never make HTTP calls in production. Environment URLs must use `https://`.
+- **Minimal data exposure** — only request and store what's needed. Don't log sensitive data (tokens, passwords, PII).
+- **Shift left** — security checks (lint rules, audit, SAST) run on every push, not just before release.
+
 ### TDD Workflow
 
 When implementing new features, follow the Red-Green-Refactor cycle:
