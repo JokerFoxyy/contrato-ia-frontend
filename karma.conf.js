@@ -25,9 +25,18 @@ module.exports = function (config) {
       reporters: [
         { type: 'html' },
         { type: 'text-summary' },
+        { type: 'lcov' },
       ],
+      check: {
+        global: {
+          statements: 90,
+          branches: 80,
+          functions: 90,
+          lines: 90,
+        },
+      },
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'coverage'],
     browsers: ['ChromeHeadless'],
     restartOnFileChange: true,
   });

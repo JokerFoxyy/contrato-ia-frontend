@@ -103,4 +103,4 @@ When implementing new features, follow the Red-Green-Refactor cycle:
 
 ## Deploy
 
-`vercel.json` rewrites everything to `/index.html` for SPA routing. CI (`.github/workflows/ci.yml`) only runs `lint` and `build:prod` on push/PR to `main` — tests are not run in CI, so don't rely on CI to catch test breakage.
+`vercel.json` rewrites everything to `/index.html` for SPA routing. CI (`.github/workflows/ci.yml`) runs `lint`, `build:prod`, and `test` with coverage enforcement on push/PR to `main` and `develop`. Coverage thresholds (90% statements/functions/lines, 80% branches) are enforced by Karma — builds fail if thresholds aren't met.
