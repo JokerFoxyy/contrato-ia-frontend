@@ -57,6 +57,10 @@ Branch naming: `feature/<short-kebab-description>` (e.g., `feature/add-new-page`
 
 ## Quality Standards
 
+### Documentation — Always Up to Date
+
+**CLAUDE.md and README.md must always reflect the current state of the codebase.** Every session that changes code, architecture, dependencies, commands, routes, or conventions **MUST** update the relevant documentation in the same commit or PR. Never leave docs stale — if you add a new component, route, service, environment variable, or change behavior, update the docs immediately. Documentation is not a follow-up task; it's part of the definition of done.
+
 ### Testing — Mandatory for every session
 
 Every feature or change **MUST** include tests before being considered complete:
