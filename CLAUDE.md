@@ -55,6 +55,39 @@ To implement any change:
 
 Branch naming: `feature/<short-kebab-description>` (e.g., `feature/add-new-page`, `feature/fix-auth-redirect`).
 
+## Quality Standards
+
+### Testing — Mandatory for every session
+
+Every feature or change **MUST** include tests before being considered complete:
+
+1. **Unit tests** for all services, guards, interceptors, and pipes.
+2. **Component tests** for every component (using `TestBed`, verify rendering, user interactions, and edge cases).
+3. **Minimum 90% code coverage** — enforced by CI via Karma coverage reporter. PRs below threshold are blocked.
+
+Test naming convention: `should <expected behavior> when <condition>` (e.g., `should navigate to login when not authenticated`).
+
+Mock external dependencies (`HttpClient`, `KeycloakService`, etc.) — tests must be fast and isolated.
+
+### Clean Code & Best Practices
+
+Follow these principles in every session:
+
+- **Single Responsibility** — each component/service does one thing well.
+- **Meaningful names** — no abbreviations; variables, methods, and components reveal intent.
+- **Small components** — extract shared UI into `shared/components/`; keep templates readable.
+- **DRY** — reuse services and utility functions; don't duplicate logic across components.
+- **YAGNI** — implement what's needed now, not speculative features.
+- **Refactor continuously** — every session should leave the codebase cleaner than it was found.
+
+### TDD Workflow
+
+When implementing new features, follow the Red-Green-Refactor cycle:
+
+1. **Red** — Write a failing test for the expected behavior.
+2. **Green** — Write the minimum code to make it pass.
+3. **Refactor** — Clean up while keeping tests green.
+
 ## Deploy
 
 `vercel.json` rewrites everything to `/index.html` for SPA routing. CI (`.github/workflows/ci.yml`) only runs `lint` and `build:prod` on push/PR to `main` — tests are not run in CI, so don't rely on CI to catch test breakage.
