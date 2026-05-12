@@ -55,6 +55,56 @@ To implement any change:
 
 Branch naming: `feature/<short-kebab-description>` (e.g., `feature/add-new-page`, `feature/fix-auth-redirect`).
 
+## Quality Standards
+
+### Documentation — Always Up to Date
+
+**CLAUDE.md and README.md must always reflect the current state of the codebase.** Every session that changes code, architecture, dependencies, commands, routes, or conventions **MUST** update the relevant documentation in the same commit or PR. Never leave docs stale — if you add a new component, route, service, environment variable, or change behavior, update the docs immediately. Documentation is not a follow-up task; it's part of the definition of done.
+
+### Testing — Mandatory for every session
+
+Every feature or change **MUST** include tests before being considered complete:
+
+1. **Unit tests** for all services, guards, interceptors, and pipes.
+2. **Component tests** for every component (using `TestBed`, verify rendering, user interactions, and edge cases).
+3. **Minimum 90% code coverage** — enforced by CI via Karma coverage reporter. PRs below threshold are blocked.
+
+Test naming convention: `should <expected behavior> when <condition>` (e.g., `should navigate to login when not authenticated`).
+
+Mock external dependencies (`HttpClient`, `KeycloakService`, etc.) — tests must be fast and isolated.
+
+### Clean Code & Best Practices
+
+Follow these principles in every session:
+
+- **Single Responsibility** — each component/service does one thing well.
+- **Meaningful names** — no abbreviations; variables, methods, and components reveal intent.
+- **Small components** — extract shared UI into `shared/components/`; keep templates readable.
+- **DRY** — reuse services and utility functions; don't duplicate logic across components.
+- **YAGNI** — implement what's needed now, not speculative features.
+- **Refactor continuously** — every session should leave the codebase cleaner than it was found.
+
+### Security First & Shift Left
+
+Security is built into every step of development, not added at the end:
+
+- **Sanitize user input** — never trust or render raw user input. Use Angular's built-in XSS protection (avoid `bypassSecurityTrust*` unless absolutely necessary and documented).
+- **No secrets in code** — API keys, tokens, and credentials go in environment files (never committed) or backend-only.
+- **CSP compliance** — avoid inline scripts/styles. All new code must work with Content Security Policy headers.
+- **Auth checks everywhere** — every route must be explicitly guarded or explicitly public. Default is deny via `authGuard`.
+- **Dependency scanning** — CI runs `npm audit` or equivalent on every PR. Known CVEs block merge.
+- **HTTPS only** — never make HTTP calls in production. Environment URLs must use `https://`.
+- **Minimal data exposure** — only request and store what's needed. Don't log sensitive data (tokens, passwords, PII).
+- **Shift left** — security checks (lint rules, audit, SAST) run on every push, not just before release.
+
+### TDD Workflow
+
+When implementing new features, follow the Red-Green-Refactor cycle:
+
+1. **Red** — Write a failing test for the expected behavior.
+2. **Green** — Write the minimum code to make it pass.
+3. **Refactor** — Clean up while keeping tests green.
+
 ## Deploy
 
-`vercel.json` rewrites everything to `/index.html` for SPA routing. CI (`.github/workflows/ci.yml`) only runs `lint` and `build:prod` on push/PR to `main` — tests are not run in CI, so don't rely on CI to catch test breakage.
+`vercel.json` rewrites everything to `/index.html` for SPA routing. CI (`.github/workflows/ci.yml`) runs `lint`, `build:prod`, and `test` with coverage enforcement on push/PR to `main` and `develop`. Coverage thresholds (90% statements/functions/lines, 80% branches) are enforced by Karma — builds fail if thresholds aren't met.
