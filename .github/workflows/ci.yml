@@ -59,5 +59,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+      - name: Test with coverage
+        run: npm test -- --watch=false --browsers=ChromeHeadless --code-coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/contrato-ia-frontend/
+          retention-days: 7
+
+      - name: Coverage summary
+        if: always()
+        run: |
+          if [ -f coverage/contrato-ia-frontend/text-summary.txt ]; then
+            echo "## Frontend Coverage Report" >> $GITHUB_STEP_SUMMARY
+            cat coverage/contrato-ia-frontend/text-summary.txt >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Minimum required: 90% statements, 80% branches, 90% functions, 90% lines**" >> $GITHUB_STEP_SUMMARY
+          fi
